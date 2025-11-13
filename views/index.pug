@@ -1,0 +1,7 @@
+extends layout
+
+block main-content
+    h2 Search for anime
+    form(action="/search", method="get") 
+        input(type="text", name="searchAnime", placeholder="Search for an anime")
+        button(type="submit") Search
