@@ -1,12 +1,38 @@
-/* body {
+body {
     margin: 20px;
-} */
+}
 
-/* input {
+input {
     padding: 5px;
     margin-right: 5px;
-} */
+}
 
-/* button {
+button {
     padding: 5px 10px;
-} */
+}
+
+.anime-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.anime-list li {
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    padding: 10px;
+    width: 180px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.anime-list li:hover {
+    transform: scale(1.05);
+}
+
+.anime-list img {
+    width: 100px;
+    border-radius: 4px;
+}
