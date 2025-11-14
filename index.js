@@ -26,10 +26,18 @@ app.get("/search", async(request, response) => {
 		return response.redirect("/");
 	}
 
-	// try {
-	// 	console.log("Test");
-	// } catch (error) {
-	// 	console.error("Error fetching anime:", error);
-	// 	response.status(500).send("Error fetching data from Jikan API.");
-	// }
+	try {
+		console.log("Fetching data for: ", query);
+		const apiResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`);
+		const responseData = await apiResponse.json();
+
+		const results = responseData.data;
+
+		response.render("search", {
+			title: `Results for ${query}`, query, results
+		});
+	} catch (error) {
+		console.error("Error fetching anime:", error);
+		response.status(500).send("Error fetching data from Jikan API.");
+	}
 });
