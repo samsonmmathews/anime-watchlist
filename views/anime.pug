@@ -1,0 +1,43 @@
+extends layout
+
+block main-content
+    a(href="/") Home
+
+    h2= anime.title
+
+    .anime-details
+        img(src=anime.images.jpg.image_url, alt=anime.title)
+
+        .info
+            p
+                strong Score: 
+                | #{anime.score || "N/A"}
+
+            p
+                strong Episodes: 
+                | #{anime.episodes || "?"}
+
+            p
+                strong Status: 
+                | #{anime.status}
+
+            p
+                strong Year: 
+                | #{anime.year || "N/A"}
+
+            p
+                strong Genres: 
+                each g, i in anime.genres
+                    | #{g.name}#{i < anime.genres.length - 1 ? ", " : ""}
+
+            h3 Synopsis
+            p= anime.synopsis 
+
+            if animeQuote && animeQuote.quote
+                h3 Random Quote
+                blockquote
+                    p= `"${animeQuote.quote}" — ${animeQuote.character}"`
+            else
+                h3 Random Quote
+                blockquote
+                    p No quotes available for this anime.

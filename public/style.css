@@ -36,3 +36,21 @@ button {
     width: 100px;
     border-radius: 4px;
 }
+
+.anime-details {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.anime-details img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.anime-details .info {
+    max-width: 600px;
+}
