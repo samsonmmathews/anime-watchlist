@@ -33,11 +33,9 @@ block main-content
             h3 Synopsis
             p= anime.synopsis 
 
-            if animeQuote
-                h3 Random Quote
-                blockquote
-                    p= `"${animeQuote.data.content}" - ${animeQuote.data.character.name}`
-            else
-                h3 Random Quote
-                blockquote
+            h3 Random Quote
+            blockquote
+                if animeQuote           
+                    p "#{animeQuote.content}" #{animeQuote.character ? `- ${animeQuote.character}` : ""}
+                else
                     p No quotes available for this anime.

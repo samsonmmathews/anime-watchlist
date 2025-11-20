@@ -66,19 +66,28 @@ app.get("/anime/:id", async(request, response) => {
 		const cleanTitle = normalizeAnimeTitle(anime.title);
         console.log("Cleaned Title for AnimeChan:", cleanTitle);
 
-		let animeQuote = null;
+		let animeQuote = {
+			content: null,
+			character: null,
+			error: false
+		};
 		try {
 			const quoteResponse = await fetch(`https://api.animechan.io/v1/quotes/random?anime=${encodeURIComponent(cleanTitle)}`);
-			animeQuote = await quoteResponse.json();
-			console.log("animeQuote: ", animeQuote);
-			console.log("RandomQuote: ", animeQuote.data);
-			console.log("Quote: ", animeQuote.data.content);
-			console.log("Name: ", animeQuote.data.character.name);
+			const animeQuoteJson = await quoteResponse.json();
 
-			console.log(animeQuote.data.content, " - ", animeQuote.data.character.name);
-			// console.log("Quote API response:", quoteData);
+			if (animeQuoteJson && animeQuoteJson.data) {
+				animeQuote.content = animeQuoteJson.data.content;
+				animeQuote.character = animeQuoteJson.data.character.name;
+			} else {
+				animeQuote.error = true;
+				animeQuote.content = "No quotes available for this anime.";
+				animeQuote.character = "";
+			}
 		} catch (quoteError) {
 			console.error("Quote fetch error:", quoteError);
+			animeQuote.error = true;
+			animeQuote.content = "No quotes available for this anime.";
+			animeQuote.character = "";
 		} 
 
 		response.render("anime", {
