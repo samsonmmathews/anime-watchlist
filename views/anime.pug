@@ -33,10 +33,10 @@ block main-content
             h3 Synopsis
             p= anime.synopsis 
 
-            if animeQuote && animeQuote.quote
+            if animeQuote
                 h3 Random Quote
                 blockquote
-                    p= `"${animeQuote.quote}" — ${animeQuote.character}"`
+                    p= `"${animeQuote.data.content}" - ${animeQuote.data.character.name}`
             else
                 h3 Random Quote
                 blockquote

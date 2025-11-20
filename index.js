@@ -47,17 +47,36 @@ app.get("/search", async(request, response) => {
 app.get("/anime/:id", async(request, response) => {
 	const animeID = request.params.id;
 
+	// Cleaned anime title to remove extra keywords from the title
+	function normalizeAnimeTitle(title) {
+		return title
+			.replace(/Season.*/i, "")
+			.replace(/3rd|2nd|1st/gi, "")
+			.replace(/\(.*?\)/g, "")
+			.trim();
+	}
+
 	try {
 		console.log("Fetching anime details for ID:", animeID);
 		const apiResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeID}`);
 		const responseData = await apiResponse.json();
 		const anime = responseData.data;
+		console.log("TEST_log: ", anime.title);
+
+		const cleanTitle = normalizeAnimeTitle(anime.title);
+        console.log("Cleaned Title for AnimeChan:", cleanTitle);
 
 		let animeQuote = null;
 		try {
-			const quoteResponse = await fetch(`https://api.animechan.io/v1/quotes/random?anime=${encodeURIComponent(anime.title)}`);
+			const quoteResponse = await fetch(`https://api.animechan.io/v1/quotes/random?anime=${encodeURIComponent(cleanTitle)}`);
 			animeQuote = await quoteResponse.json();
-			console.log("Quote API response:", quoteData);
+			console.log("animeQuote: ", animeQuote);
+			console.log("RandomQuote: ", animeQuote.data);
+			console.log("Quote: ", animeQuote.data.content);
+			console.log("Name: ", animeQuote.data.character.name);
+
+			console.log(animeQuote.data.content, " - ", animeQuote.data.character.name);
+			// console.log("Quote API response:", quoteData);
 		} catch (quoteError) {
 			console.error("Quote fetch error:", quoteError);
 		} 
