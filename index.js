@@ -2,8 +2,11 @@ import { error } from "console";
 import express, { response } from "express"
 import { request } from "http";
 import path from "path";
+import fs from "fs";
 
 const __dirname = import.meta.dirname;
+
+const watchlistPath = path.join(__dirname, "data", "watchlist.json");
 
 const app = express();
 const port = process.env.PORT || "8888";
@@ -15,6 +18,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (request, response) => {
   	response.render("index", { title: "Anime Watchlist" });
 });
+
+function loadWatchlist() {
+	const data = fs.readFileSync(watchlistPath, "utf-8");
+	return JSON.parse(data);
+}
 
 app.listen(port, () => {
   	console.log(`Listening on http://localhost:${port}`);
@@ -97,4 +105,12 @@ app.get("/anime/:id", async(request, response) => {
 		console.error("Error fetching anime details:", error);
 		response.status(500).send("Could not load anime details.");
 	}
+});
+
+app.get("/watchlist", (request, response) => {
+	const watchlist = loadWatchlist();
+
+	response.render("watchlist", {
+		title: "My Watchlist", watchlist
+	});
 });
