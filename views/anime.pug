@@ -5,6 +5,9 @@ block main-content
 
     h2= anime.title
 
+    form(action=`/watchlist/add/${anime.mal_id}` method="post")
+        button(type="submit") Add to Watchlist
+
     .anime-details
         img(src=anime.images.jpg.image_url, alt=anime.title)
 
