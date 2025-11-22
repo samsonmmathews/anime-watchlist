@@ -1,5 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-dark: #0a0a0f;
+    --text: #e5e5e5;
+    --bg-card: #151521;
+    --bg-hover: #1f1f2e;
+    --accent: #7f5af0;
+    --accent2: #4cc9f0;
+    --text-light: #b5b5b5;
+    --danger: #ff4d6d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
 body {
-    margin: 20px;
+    background: var(--bg-dark);
+    color: var(--text);
+    padding: 20px;
+}
+
+#header {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.2);
 }
 
 input {
@@ -9,6 +39,17 @@ input {
 
 button {
     padding: 5px 10px;
+}
+
+#site-name a {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+#site-name a:hover {
+    color: var(--accent2);
 }
 
 .anime-list {
