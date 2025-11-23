@@ -1,7 +1,9 @@
 extends layout
 
 block main-content
-    h2 Search for anime
-    form(action="/search", method="get") 
-        input(type="text", name="searchAnime", placeholder="Search for an anime")
-        button(type="submit") Search
+    .home-hero
+        h2.home-title Search for anime
+        p.home-subtitle Search, explore, and build your personal watchlist containing your favourite animes.
+        form.home-search(action="/search", method="get") 
+            input(type="text", name="searchAnime", placeholder="Search for an anime")
+            button(type="submit") Search
