@@ -72,39 +72,81 @@ button:hover {
     text-shadow: 0 0 8px rgba(76, 201, 240, 0.5);
 }
 
-.anime-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
+.search-header {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.anime-list li {
+.search-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 5px;
+}
+
+.search-header .subtitle {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 28px;
+}
+
+.anime-card {
     background: var(--bg-card);
-    /* border: 1px solid #2e2e2e; */
     border-radius: 15px;
-    padding: 15px;
-    width: 180px;
-    text-align: center;
-    transition: transform 0.2s;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
 }
 
-.anime-list li:hover {
+.anime-card:hover {
+    /* transform: translateY(-6px); */
     transform: scale(1.05);
     background: var(--bg-hover);
+    box-shadow: 0 0 18px rgba(76, 201, 240, 0.2);
 }
 
-.anime-list img {
-    width: 130px;
-    border-radius: 10px;
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-image {
+    width: 100%;
+    height: 260px;
     object-fit: cover;
 }
 
-.anime-list h3 {
-    font-size: 16px;
-    margin: 8px 0;
+.card-info {
+    padding: 12px 15px;
+}
+
+.card-title {
+    font-size: 17px;
+    font-weight: 600;
     color: var(--accent2);
+    margin-bottom: 5px;
+    min-height: 42px;
+}
+
+.card-rating {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.no-results {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.no-results p {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--accent);
 }
 
 .anime-details {
