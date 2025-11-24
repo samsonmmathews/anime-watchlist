@@ -1,19 +1,23 @@
 extends layout
 
 block main-content
-    h2 Search results for "#{query}"
-    a(href="/") Home
+    .search-header
+        h1 Search results for "#{query}"
+        if results.length
+            p.subtitle Showing #{results.length} anime result(s)
 
     if results.length
-        ul.anime-list
+        .results-grid
             each anime in results
-                li 
-                    a(href=`/anime/${anime.mal_id}`)
-                        img(src=anime.images.jpg.image_url, alt=anime.title)
-                        h3= anime.title
-                        if anime.score
-                            p Rating: #{anime.score}
-                        else 
-                            p Rating: N/A
+                .anime-card
+                    a.card-link(href=`/anime/${anime.mal_id}`)
+                        img.card-image(src=anime.images.jpg.image_url, alt=anime.title)
+                        .card-info
+                            h3.card-title= anime.title
+                            if anime.score
+                                p.card-rating Rating: #{anime.score}
+                            else 
+                                p.card-rating Rating: N/A
     else 
-        p No results found.
+        .no-results
+            p No results found.

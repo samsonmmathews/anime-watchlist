@@ -2,8 +2,11 @@ import { error } from "console";
 import express, { response } from "express"
 import { request } from "http";
 import path from "path";
+import fs from "fs";
 
 const __dirname = import.meta.dirname;
+
+const watchlistPath = path.join(__dirname, "data", "watchlist.json");
 
 const app = express();
 const port = process.env.PORT || "8888";
@@ -12,9 +15,21 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");  
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.get("/", (request, response) => {
   	response.render("index", { title: "Anime Watchlist" });
 });
+
+function loadWatchlist() {
+	const data = fs.readFileSync(watchlistPath, "utf-8");
+	return JSON.parse(data);
+}
+
+function saveWatchlist(list) {
+	fs.writeFileSync(watchlistPath, JSON.stringify(list, null, 2 ));
+}
 
 app.listen(port, () => {
   	console.log(`Listening on http://localhost:${port}`);
@@ -98,3 +113,51 @@ app.get("/anime/:id", async(request, response) => {
 		response.status(500).send("Could not load anime details.");
 	}
 });
+
+app.get("/watchlist", (request, response) => {
+	const watchlist = loadWatchlist();
+
+	response.render("watchlist", {
+		title: "My Watchlist", watchlist
+	});
+});
+
+app.post("/watchlist/add/:id", async(request, response) => {
+	const animeID = request.params.id;
+	const watchlist = loadWatchlist();
+
+	if(watchlist.some(a => a.id == animeID))
+	{
+		return response.redirect("/watchlist");
+	}
+
+	try {
+		const apiResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeID}`);
+		const responseData = await apiResponse.json();
+		const anime = responseData.data;
+
+		const watchlistEntry = {
+			id: anime.mal_id, 
+			title: anime.title,
+			image: anime.images.jpg.image_url
+		};
+
+		watchlist.push(watchlistEntry);
+		saveWatchlist(watchlist);
+
+		response.redirect("/watchlist");
+	} catch (error) {
+		console.error("Error adding to watchlist: ", error);
+		response.status(500).send("Could not add anime to watchlist.");
+	}
+});
+
+app.post("/watchlist/remove/:id", (request, response) => {
+	const animeID = request.params.id;
+	let watchlist = loadWatchlist();
+
+	watchlist = watchlist.filter(anime => anime.id != animeID);
+
+	saveWatchlist(watchlist);
+	response.redirect("/watchlist");
+})

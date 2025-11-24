@@ -1,0 +1,17 @@
+extends layout
+
+block main-content
+    h2 My Watchlist
+    a(href="/") Home
+
+    if watchlist.length
+        ul.anime-list
+            each anime in watchlist
+                li 
+                    a(href=`/anime/${anime.id}`)
+                        img(src=anime.image, alt=anime.title)
+                        h3= anime.title
+                    form(action=`/watchlist/remove/${anime.id}` method="post")
+                        button(type="submit") Remove
+    else 
+        p Your watchlist is empty. Add some shows to get started.

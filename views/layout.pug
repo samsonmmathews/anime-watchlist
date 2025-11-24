@@ -8,9 +8,11 @@ html
         link(rel="stylesheet", href="/style.css")
     body
         header#header
-            div.header-content
-                h1#site-name
-                    a(href="/") Anime Watchlist
+            nav.navbar
+                a.logo(href="/") Anime Watchlist
+                ul.nav-links
+                    li: a(href="/") Home
+                    li: a(href="/watchlist") Watchlist
         main#main
             block main-content
         footer#footer

@@ -1,56 +1,234 @@
-body {
-    margin: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-dark: #0a0a0f;
+    --text: #e5e5e5;
+    --bg-card: #151521;
+    --bg-hover: #1f1f2e;
+    --accent: #7f5af0;
+    --accent2: #4cc9f0;
+    --text-light: #b5b5b5;
+    --danger: #ff4d6d;
 }
 
-input {
-    padding: 5px;
-    margin-right: 5px;
-}
-
-button {
-    padding: 5px 10px;
-}
-
-.anime-list {
-    list-style: none;
+* {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text);
+    padding: 20px;
+}
+
+#header {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 25px rgba(127, 90, 240, 0.2);
+}
+
+button:hover {
+    background: var(--accent2);
+}
+
+.navbar {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.anime-list li {
-    border: 1px solid #2e2e2e;
-    border-radius: 8px;
-    padding: 10px;
-    width: 180px;
-    text-align: center;
-    transition: transform 0.2s;
+.logo {
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--accent);
 }
 
-.anime-list li:hover {
+.logo:hover {
+    color: var(--accent2);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.nav-links li a:hover {
+    color: var(--accent2);
+    text-shadow: 0 0 8px rgba(76, 201, 240, 0.5);
+}
+
+.search-header {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 5px;
+}
+
+.search-header .subtitle {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 28px;
+}
+
+.anime-card {
+    background: var(--bg-card);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.anime-card:hover {
+    /* transform: translateY(-6px); */
     transform: scale(1.05);
+    background: var(--bg-hover);
+    box-shadow: 0 0 18px rgba(76, 201, 240, 0.2);
 }
 
-.anime-list img {
-    width: 100px;
-    border-radius: 4px;
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 12px 15px;
+}
+
+.card-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 5px;
+    min-height: 42px;
+}
+
+.card-rating {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.no-results {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.no-results p {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--accent);
 }
 
 .anime-details {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 12px rgba(76, 201, 240, 0.15);
 }
 
 .anime-details img {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
+    width: 500px;
+    /* height: auto; */
+    border-radius: 12px;
     object-fit: cover;
 }
 
 .anime-details .info {
-    max-width: 600px;
+    max-width: 650px;
+}
+
+.anime-details strong {
+    color: var(--accent2);
+}
+
+blockquote {
+    padding-left: 15px;
+    margin-top: 10px;
+    border-left: 4px solid var(--accent);
+    color: var(--text-light);
+    font-style: italic;
+}
+
+#footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 25px 0;
+    color: var(--text-light);
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-hero {
+    text-align: center;
+    margin-top: 60px;
+    padding: 60px 20px;
+}
+
+.home-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-shadow: 0 0 15px rgba(76, 201, 240, 0.4);
+    margin-bottom: 10px;
+}
+
+.home-subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.home-search input {
+    width: 320px;
+    padding: 12px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background: var(--bg-hover);
+    color: var(--text);
+}
+
+.home-search button {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
 }
