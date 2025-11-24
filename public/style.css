@@ -78,7 +78,7 @@ button:hover {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.search-header h2 {
+.search-header h1 {
     font-size: 32px;
     font-weight: 700;
     color: var(--accent2);
