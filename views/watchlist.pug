@@ -1,17 +1,26 @@
 extends layout
 
 block main-content
-    h2 My Watchlist
-    a(href="/") Home
+
+    .watchlist-header
+        h1 My Watchlist
+        if watchlist.length
+            p.watchlist-subtitle #{watchlist.length} anime saved
+        else
+            p.watchlist-subtitle Your watchlist is empty.
 
     if watchlist.length
-        ul.anime-list
+        .watchlist-grid
             each anime in watchlist
-                li 
-                    a(href=`/anime/${anime.id}`)
+                .watchlist-card
+                    a.card-image-link(href=`/anime/${anime.id}`)
                         img(src=anime.image, alt=anime.title)
-                        h3= anime.title
-                    form(action=`/watchlist/remove/${anime.id}` method="post")
-                        button(type="submit") Remove
+                    .card-info
+                        h3.card-title= anime.title
+                        form(action=`/watchlist/remove/${anime.id}` method="post")
+                            button.remove-btn(type="submit") Remove
     else 
-        p Your watchlist is empty. Add some shows to get started.
+        .empty-state
+            h2 No shows yet
+            p Add some shows to get started.
+            a.btn(href="/") Explore Anime

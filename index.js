@@ -39,12 +39,10 @@ app.get("/search", async(request, response) => {
   	const query = request.query.searchAnime;
 
 	if(!query) {
-		console.log("No data found");
 		return response.redirect("/");
 	}
 
 	try {
-		console.log("Fetching data for: ", query);
 		const apiResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`);
 		const responseData = await apiResponse.json();
 
@@ -72,14 +70,11 @@ app.get("/anime/:id", async(request, response) => {
 	}
 
 	try {
-		console.log("Fetching anime details for ID:", animeID);
 		const apiResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeID}`);
 		const responseData = await apiResponse.json();
 		const anime = responseData.data;
-		console.log("TEST_log: ", anime.title);
 
 		const cleanTitle = normalizeAnimeTitle(anime.title);
-        console.log("Cleaned Title for AnimeChan:", cleanTitle);
 
 		let animeQuote = {
 			content: null,
