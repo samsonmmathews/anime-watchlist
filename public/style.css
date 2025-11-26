@@ -101,10 +101,10 @@ button:hover {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+    transition: 0.2s;
 }
 
 .anime-card:hover {
-    /* transform: translateY(-6px); */
     transform: scale(1.05);
     background: var(--bg-hover);
     box-shadow: 0 0 18px rgba(76, 201, 240, 0.2);
@@ -149,38 +149,110 @@ button:hover {
     color: var(--accent);
 }
 
-.anime-details {
+.block-hero {
+    background: linear-gradient(90deg, var(--bg-hover), var(--bg-card));
+    padding: 40px 20px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 35px;
+    box-shadow: 0 0 20px rgba(76,201,240,0.1);
+}
+
+.anime-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-shadow: 0 0 15px rgba(76,201,240,0.35);
+}
+
+.details-container {
     display: flex;
-    gap: 30px;
+    gap: 35px;
     margin-top: 20px;
-    /* align-items: flex-start; */
-    background: var(--bg-card);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 12px rgba(76, 201, 240, 0.15);
 }
 
-.anime-details img {
-    width: 500px;
-    /* height: auto; */
-    border-radius: 12px;
-    object-fit: cover;
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.anime-details .info {
-    max-width: 650px;
+.cover {
+    width: 300px;
+    border-radius: 14px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
 }
 
-.anime-details strong {
+.add-watchlist {
+    padding: 14px 20px;
+    font-size: 16px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-watchlist:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+}
+
+.right-panel {
+    flex: 1;
+}
+
+.info p {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: var(--bg-hover);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    color: var(--accent2);
+    border: 1px solid rgba(76, 201, 240, 0.3);
+}
+
+.section-title {
+    margin: 20px 0 8px;
+    font-size: 26px;
     color: var(--accent2);
 }
 
-blockquote {
-    padding-left: 15px;
-    margin-top: 10px;
-    border-left: 4px solid var(--accent);
+.synopsis {
+    line-height: 1.6;
     color: var(--text-light);
-    font-style: italic;
+}
+
+.quote-box {
+    margin-top: 12px;
+    padding: 18px 22px;
+    border-left: 4px solid var(--accent);
+    background: rgba(255, 255, 255, 0.03);
+    /* border-radius: 10px; */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.quote-author {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent2);
+    font-size: 15px;
+    font-weight: 600;
 }
 
 #footer {

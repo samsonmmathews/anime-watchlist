@@ -1,44 +1,50 @@
 extends layout
 
 block main-content
-    a(href="/") Home
 
-    h2= anime.title
+    .block-hero
+        h1.anime-title= anime.title
 
-    form(action=`/watchlist/add/${anime.mal_id}` method="post")
-        button(type="submit") Add to Watchlist
+    .details-container
+        .left-panel
+            img.cover(src=anime.images.jpg.image_url, alt=anime.title)
 
-    .anime-details
-        img(src=anime.images.jpg.image_url, alt=anime.title)
+            form(action=`/watchlist/add/${anime.mal_id}` method="post")
+                button.add-watchlist(type="submit") Add to Watchlist
 
-        .info
-            p
-                strong Score: 
-                | #{anime.score || "N/A"}
+        .right-panel
+            .info
+                p
+                    strong Score: 
+                    | #{anime.score || "N/A"}
 
-            p
-                strong Episodes: 
-                | #{anime.episodes || "?"}
+                p
+                    strong Episodes: 
+                    | #{anime.episodes || "?"}
 
-            p
-                strong Status: 
-                | #{anime.status}
+                p
+                    strong Status: 
+                    | #{anime.status}
 
-            p
-                strong Year: 
-                | #{anime.year || "N/A"}
+                p
+                    strong Year: 
+                    | #{anime.year || "N/A"}
 
-            p
-                strong Genres: 
-                each g, i in anime.genres
-                    | #{g.name}#{i < anime.genres.length - 1 ? ", " : ""}
+                if anime.genres.length
+                    p
+                        strong Genres: 
+                    .genre-tags
+                        each g in anime.genres
+                            span.tag= g.name
 
-            h3 Synopsis
-            p= anime.synopsis 
+            h2.section-title Synopsis
+            p.synopsis= anime.synopsis 
 
-            h3 Random Quote
-            blockquote
+            h2.section-title Random Quote
+            blockquote.quote-box
                 if animeQuote           
-                    p "#{animeQuote.content}" #{animeQuote.character ? `- ${animeQuote.character}` : ""}
+                    p "#{animeQuote.content}"
+                    if animeQuote.character
+                        span.quote-author - #{animeQuote.character}
                 else
                     p No quotes available for this anime.
