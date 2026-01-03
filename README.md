@@ -11,6 +11,10 @@ Designed with scalability in mind, with UI and UX enhancements planned for futur
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen?logo=mongodb)](https://www.mongodb.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.txt)
 
+
+> Live website is avaialable at:
+> [https://anime-watchlist-iv22.onrender.com](https://anime-watchlist-iv22.onrender.com)
+
 </div>
 
 ## 🍱 Overview
